@@ -24,7 +24,7 @@ instance Ord Evaluated where
 type Metric = FileInfo -> EpochTime
 
 metric :: Metric
-metric = Files.accessTime . infoStatus
+metric = Files.modificationTime . infoStatus
 
 folding :: Int -> Metric -> [Evaluated] -> FileInfo -> [Evaluated]
 folding size metric previous info
