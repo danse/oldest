@@ -33,8 +33,12 @@ folding size metric previous info
           value=metric info
           }
 
+-- will eliminate hidden directories from recursion, but the `.` dir
+notHidden :: FindClause Bool
+notHidden = fileName /~? ".?*"
+
 main = do
   [root] <- getArgs
-  results <- fold always (folding 10 metric) [] root
+  results <- fold notHidden (folding 10 metric) [] root
   sequence $ map print results
   
