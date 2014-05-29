@@ -5,11 +5,15 @@ import System.FilePath.Find
 import System.Environment
 import Control.Monad
 import Data.Ord
+import System.Time.Utils
 
 data Evaluated = Evaluated {
   path:: FilePath,
   value:: EpochTime
-  } deriving Show
+  }
+
+instance Show Evaluated where
+  show e = (show (epochToClockTime (value e))) ++ " " ++ (show (path e))
 
 instance Eq Evaluated where
   e1 == e2 = (value e1) == (value e2)
